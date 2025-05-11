@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Tailwind CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!--Flowbite CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <title>JsFunction</title>
+</head>
+
+<body class="bg-black">
+    <h1 class="text-2xl text-center font-bold text-white">JAVASCRIPT FUNCTION HOMEWORK</h1>
+    <!--Homework 1:-->
+    <div>
+        <h3 class="text-xl font-bold text-white">Bài 1: Quản lý tuyển sinh</h3>
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text" id="schoolscore" placeholder="Điểm chuẩn của trường">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="mon_1" type="text" placeholder="Điểm môn thứ 1">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="mon_2" type="text" placeholder="Điểm môn thứ 2">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="mon_3" type="text" placeholder="Điểm môn thứ 3">
+        <label class="font-bold text-white" for="">Khu vực ưu tiên</label>
+        <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            name="" id="khuVuc">
+            <option value="khuvuc">Chọn khu vực</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="X">Không</option>
+        </select>
+        <label class="ml-4 font-bold text-white" for="">Đối tượng ưu tiên</label>
+        <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            name="" id="doiTuong">
+            <option value="doituong">Chọn đối tượng</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="khong">Không</option>
+        </select>
+        <button
+            class=" my-2.5 block mx-auto cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="ketqua" onclick="onButton()">Kết quả</button>
+        <div id="displayResult_1" class="text-white"></div>
+    </div>
+
+    <!--Homework 2:-->
+    <div class="my-10">
+        <h3 class="text-xl font-bold text-white">Bài 2: Tính tiền điện</h3>
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="yourname" type="text" placeholder="Tên của bạn">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="yourKW" type="text" placeholder="số kW bạn sử dụng">
+        <button id="btnKW" onclick="btnKW()"
+            class=" my-2.5 block mx-auto cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Tính
+            tiền</button>
+        <div id="displayResult_2" class="text-white"></div>
+    </div>
+    <!--Homework 3:-->
+    <div class="my-10">
+        <h3 class="text-xl font-bold text-white">Bài 3: Tính thuế thu nhập cá nhân</h3>
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="fullname" type="text" placeholder="Nhập họ và tên">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="income" type="number" placeholder="Tổng thu nhập năm">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="people" type="number" placeholder="Số người phụ thuộc">
+        <button id="taxBtn" onclick=" onTaxBtn()"
+            class=" my-2.5 block mx-auto cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Tính
+            tiền thuế cá nhân</button>
+        <div id="displayResult_3" class="text-white"></div>
+    </div>
+    <!--Homework 4:-->
+    <div>
+        <h3 class="text-xl font-bold text-white">Bài 4: Tính tiền cáp</h3>
+        <label class="font-bold text-white" for="">Chọn loại khách hàng</label>
+        <select
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            name="" id="typeOfCustomer">
+            <option value="nhaDan">Nhà dân</option>
+            <option value="doanhNghiep">Doanh nghiệp</option>
+        </select>
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="text" placeholder="Mã khách hàng của bạn">
+        <input
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="number" placeholder="Số kênh cao cấp">
+        <button
+            class=" my-2.5 block mx-auto cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Tính
+            tiền cáp</button>
+        <div id="displayResult_4" class="text-white"></div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="./js/main.js"></script>
+
+
+
+</body>
+
+</html>
