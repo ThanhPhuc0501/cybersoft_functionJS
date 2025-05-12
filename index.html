@@ -89,19 +89,23 @@
     <div>
         <h3 class="text-xl font-bold text-white">Bài 4: Tính tiền cáp</h3>
         <label class="font-bold text-white" for="">Chọn loại khách hàng</label>
-        <select
+        <select 
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             name="" id="typeOfCustomer">
-            <option value="nhaDan">Nhà dân</option>
-            <option value="doanhNghiep">Doanh nghiệp</option>
+            <option value="choose">Loại khách hàng</option>
+            <option value="nhadan">Nhà dân</option>
+            <option value="doanhnghiep">Doanh nghiệp</option>
         </select>
-        <input
+        <input id="maKH"
             class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             type="text" placeholder="Mã khách hàng của bạn">
-        <input
+        <input id="channels"
             class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             type="number" placeholder="Số kênh cao cấp">
-        <button
+        <input id="connect"
+            class="m-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            type="number" placeholder="Số kết nối">
+        <button id="btncab" onclick="onCab()"
             class=" my-2.5 block mx-auto cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Tính
             tiền cáp</button>
         <div id="displayResult_4" class="text-white"></div>

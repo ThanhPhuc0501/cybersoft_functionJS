@@ -132,3 +132,31 @@ function onTaxBtn() {
 }
 
 //Homework 4
+function onCab() {
+    const type_of_customer = getID('typeOfCustomer').value;
+    const customer_code = getID('maKH').value;
+    if (customer_code === '') {
+        alert('Bạn vui lòng nhập mã khách hàng')
+    }
+    const num_of_channels = getID('channels').value;
+
+    //Logical process
+    let total_bill = 0;
+    if (type_of_customer === 'nhadan') {
+        total_bill = 4.5 + 20.5 + (num_of_channels * 7.5);
+    } else if (type_of_customer === 'doanhnghiep') {
+        if (num_of_connect <= 10) {
+            total_bill = 15 + 75 + (num_of_channels * 50)
+        } else {
+            total_bill = 15 + 75 + (num_of_connect - 10) * 5 + (num_of_channels * 50);
+        }
+    } else {
+        alert('Bạn chưa chọn loại khách hàng')
+    }
+    //display the logical result
+    getID('displayResult_4').innerHTML = `
+        <p>Mã khách hàng của bạn là: ${customer_code}</p>
+        <p>Tổng hóa đơn tiền cáp của bạn là: ${total_bill}$</p> `;
+}
+
+
