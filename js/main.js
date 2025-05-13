@@ -2,15 +2,9 @@
 function getID(id) {
     return document.getElementById(id)
 }
-
-function onButton() {
-    let schoolScore = getID('schoolscore').value * 1;
-    let mon_1 = getID('mon_1').value * 1;
-    let mon_2 = getID('mon_2').value * 1;
-    let mon_3 = getID('mon_3').value * 1;
+//Lấy value của khu vực ưu tiên
+function chooseKV() {
     let khuvuc = getID('khuVuc').value;
-    let doituong = getID('doiTuong').value;
-    //Lấy value của khu vực ưu tiên
     let diemKV = 0;
     switch (khuvuc) {
         case 'A':
@@ -29,7 +23,11 @@ function onButton() {
             alert('Vui lòng chọn khu vực ưu tiên')
             return;
     }
-    //Lấy value của đối tượng ưu tiên
+    return diemKV;
+}
+//Lấy value của đối tượng ưu tiên
+function chooseDT() {
+    let doituong = getID('doiTuong').value;
     let diemDT = 0;
     switch (doituong) {
         case '1':
@@ -48,15 +46,27 @@ function onButton() {
             alert('Vui lòng chọn đối tượng ưu tiên');
             return;
     }
+    return diemDT;
+}
+//Xử lí khi click vào button
+function onButton() {
+    const check_khuvuc = chooseKV();
+    const check_doituong = chooseDT();
+    let schoolScore = getID('schoolscore').value * 1;
+    let mon_1 = getID('mon_1').value * 1;
+    let mon_2 = getID('mon_2').value * 1;
+    let mon_3 = getID('mon_3').value * 1;
     //Tính toán điểm;
     let yourScore = 0;
-    yourScore = mon_1 + mon_2 + mon_3 + diemKV + diemDT;
+    yourScore = mon_1 + mon_2 + mon_3 + check_khuvuc + check_doituong;
     //Xử lí điều kiện
-    let yourResult = ''
+    let yourResult = '';
     if (schoolScore <= 0 || mon_1 < 0 || mon_2 < 0 || mon_3 < 0) {
         alert('Vui lòng xem lại dữ liệu nhập vào')
+        return
     } else if (mon_1 === 0 || mon_2 === 0 || mon_3 === 0) {
-        alert('Bạn đã bị điểm liệt nên không thể tính toán')
+        alert('Rất tiếc bạn đã có điểm liệt')
+        return
 
     } else if (schoolScore > 0 && schoolScore > yourScore) {
         yourResult = 'Rất tiếc, bạn đã rớt'
@@ -70,6 +80,7 @@ function onButton() {
     `;
 }
 
+
 //Homework 2
 const vndGD1 = 500;
 const vndGD2 = 650;
@@ -79,50 +90,81 @@ const vndGD5 = 1300;
 let yourBill = 0;
 function btnKW() {
     const yourName = getID('yourname').value;
+    calcKw();
+    getID('displayResult_2').innerHTML = `
+    <p>Họ và tên: ${yourName}<p>
+    <p>Số tiền phải trả: ${yourBill} VND.<p>
+    `;
+}
+function calcKw() {
     const yourKW = getID('yourKW').value * 1;
     if (yourKW <= 0) {
         alert('Dữ liệu nhập vào không hợp lệ')
     } else if (yourKW <= 50) {
-        yourBill = yourKW * vndGD1;
+        yourBill = kwPhase1(yourKW);
     } else if (yourKW <= 100) {
-        yourBill = 50 * vndGD1 + (yourKW - 50) * vndGD2
+        yourBill = kwPhase1(50) + kwPhase2(yourKW)
     } else if (yourKW <= 200) {
-        yourBill = 50 * vndGD1 + 50 * vndGD2 + (yourKW - 100) * vndGD3
+        yourBill = kwPhase1(50) + kwPhase2(100) + kwPhase3(yourKW)
     } else if (yourKW <= 350) {
-        yourBill = 50 * vndGD1 + 50 * vndGD2 + 100 * vndGD3 + (yourKW - 200) * vndGD4
+        yourBill = kwPhase1(50) + kwPhase2(100) + kwPhase3(200) + kwPhase4(yourKW)
     } else {
-        yourBill = 50 * vndGD1 + 50 * vndGD2 + 100 * vndGD3 + 150 * vndGD4 + (yourKW - 350) * vndGD5
+        yourBill = kwPhase1(50) + kwPhase2(100) + kwPhase3(200) + kwPhase4(350) + kwPhase5(yourKW)
     }
-    getID('displayResult_2').innerHTML = `
-    <p>Họ và tên: ${yourName}.<p>
-    <p>Số tiền phải trả: ${yourBill}<p>
-    `;
+}
+
+function kwPhase1(yourKW) {
+    const rs = yourKW * vndGD1;
+    return rs;
+}
+function kwPhase2(yourKW) {
+    const rs = (yourKW - 50) * vndGD2;
+    return rs;
+}
+function kwPhase3(yourKW) {
+    const rs = (yourKW - 100) * vndGD3;
+    return rs;
+}
+function kwPhase4(yourKW) {
+    const rs = (yourKW - 200) * vndGD4;
+    return rs;
+}
+function kwPhase5(yourKW) {
+    const rs = (yourKW - 350) * vndGD5
+    return rs;
 }
 
 //Homework 3
+const tax_1 = 0.05;
+const tax_2 = 0.1;
+const tax_3 = 0.15;
+const tax_4 = 0.2;
+const tax_5 = 0.25;
+const tax_6 = 0.3;
+const tax_7 = 0.35
+let taxIncome = 0;
 function onTaxBtn() {
     const fullName = getID('fullname').value;
     const yearIncome = getID('income').value * 1;
-    const numPeoeple = getID('people').value * 1;
-    let taxIncome = 0;
+    const numPeoeple = getID('people').value * 1;    
     taxIncome = yearIncome - 4e+6 - numPeoeple * 1.6e+6
     let realTax = 0;
     if (taxIncome <= 0) {
         alert('Dữ liệu nhập vào không hợp lệ')
     } else if (taxIncome <= 60e+6) {
-        realTax = taxIncome * 0.05;
+        realTax = taxIncome * tax_1;
     } else if (taxIncome <= 120e+6) {
-        realTax = 60e+6 * 0.05 + (taxIncome - 60e+6) * 0.1;
+        realTax = 60e+6 * tax_1 + (taxIncome - 60e+6) * tax_2;
     } else if (taxIncome <= 210e+6) {
-        realTax = 60e+6 * 0.05 + 60e+6 * 0.1 + (taxIncome - 120e+6) * 0.15;
+        realTax = 60e+6 * tax_1 + 60e+6 * tax_2 + (taxIncome - 120e+6) * tax_3;
     } else if (taxIncome <= 384e+6) {
-        realTax = 60e+6 * 0.05 + 60e+6 * 0.1 + 90e+6 * 0.15 + (taxIncome - 210e+6) * 0.2;
+        realTax = 60e+6 * tax_1 + 60e+6 * tax_2 + 90e+6 * tax_3 + (taxIncome - 210e+6) * tax_4;
     } else if (taxIncome <= 624e+6) {
-        realTax = 60e+6 * 0.05 + 60e+6 * 0.1 + 90e+6 * 0.15 + 174e+6 * 0.2 + (taxIncome - 384e+6) * 0.25;
+        realTax = 60e+6 * tax_1 + 60e+6 * tax_2 + 90e+6 * tax_3 + 174e+6 * tax_4 + (taxIncome - 384e+6) * tax_5;
     } else if (taxIncome <= 960) {
-        realTax = 60e+6 * 0.05 + 60e+6 * 0.1 + 90e+6 * 0.15 + 174e+6 * 0.2 + 240e+6 * 0.25 + (taxIncome - 624e+6) * 0.3;
+        realTax = 60e+6 * tax_1 + 60e+6 * tax_2 + 90e+6 * tax_3 + 174e+6 * tax_4 + 240e+6 * tax_5 + (taxIncome - 624e+6) * tax_6;
     } else {
-        realTax = 60e+6 * 0.05 + 60e+6 * 0.1 + 90e+6 * 0.15 + 174e+6 * 0.2 + 240e+6 * 0.25 + 336e+6 * 0.3 + (taxIncome - 960e+6) * 0.35
+        realTax = 60e+6 * tax_1 + 60e+6 * tax_2 + 90e+6 * tax_3 + 174e+6 * tax_4 + 240e+6 * tax_5 + 336e+6 * 0.3 + (taxIncome - 960e+6) * tax_7
     }
     getID('displayResult_3').innerHTML = `
     <p>Họ và tên: ${fullName}</p>
@@ -130,6 +172,7 @@ function onTaxBtn() {
     <p>Thuế thu nhập cần phải trả là: ${realTax} VND</p>
     `
 }
+
 
 //Homework 4
 function onCab() {
@@ -139,6 +182,7 @@ function onCab() {
         alert('Bạn vui lòng nhập mã khách hàng')
     }
     const num_of_channels = getID('channels').value;
+    const num_of_connect = getID('connect').value;
 
     //Logical process
     let total_bill = 0;
